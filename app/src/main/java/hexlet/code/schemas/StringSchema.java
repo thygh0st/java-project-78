@@ -19,8 +19,8 @@ public final class StringSchema implements Validating {
         this.minLength = length; // FIXME что-то сделать с -length
         return this;
     }
-    public StringSchema contains(String substr) {
-        this.substr = substr;
+    public StringSchema contains(String substring) {
+        this.substr = substring;
         return this;
     }
 
