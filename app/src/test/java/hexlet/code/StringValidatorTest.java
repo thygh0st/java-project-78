@@ -1,9 +1,9 @@
-package hexlet.code;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //import java.nio.file.Files;
 //import java.nio.file.Paths;
 
+import hexlet.code.Validator;
 import hexlet.code.schemas.StringSchema;
 //import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
