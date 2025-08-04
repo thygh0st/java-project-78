@@ -32,7 +32,7 @@ public final class StringSchema implements Validating {
                 return false;
             }
         }
-        if ((minLength > 0) && (str.length() < minLength)) {
+        if ((minLength > 0) && (str.length() < minLength)) { // флаг minLength?
             return false;
         }
         if ((substr != null) && (!str.contains(substr))) {
