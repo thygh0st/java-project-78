@@ -27,11 +27,12 @@ public final class StringSchema implements Validating {
     @Override
     public boolean isValid(Object obj) { // TODO
         String str = (String) obj;
-        if (required) {
-            if (str == null || str.equals("")) {
-                return false;
-            }
+        if ((str == null) || str.isEmpty()) {
+            return !required;
         }
+//        if (required && str.equals("")) {
+//            return false;
+//        }
         if ((minLength > 0) && (str.length() < minLength)) { // флаг minLength?
             return false;
         }

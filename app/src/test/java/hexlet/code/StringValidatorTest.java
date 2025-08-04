@@ -43,6 +43,7 @@ public final class StringValidatorTest {
         assertEquals(false, schema.isValid("This str is not valid"));
         assertEquals(true, schema.contains("").isValid("This str is valid"));
         assertEquals(false, schema.contains("   ").isValid("this str is not valid"));
+        assertEquals(false, schema.contains("this").isValid(null));
     }
 
         // TODO тест minLength(), в т.ч. отрицательный
