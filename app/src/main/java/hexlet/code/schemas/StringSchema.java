@@ -28,11 +28,7 @@ public final class StringSchema implements Validating {
     public boolean isValid(Object obj) { // TODO
         String str = (String) obj;
         if ((str == null) || str.isEmpty()) {
-            if ((required) || ((minLength > 0) && (substr != null))) {
-                return false;
-            } else {
-                return true;
-            }
+            return (!required) && ((minLength <= 0) || (substr == null));
         }
 //        if (required && str.equals("")) {
 //            return false;
