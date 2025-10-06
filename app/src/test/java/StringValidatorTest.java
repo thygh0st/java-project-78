@@ -1,5 +1,3 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 //import java.nio.file.Files;
 //import java.nio.file.Paths;
 
@@ -7,6 +5,10 @@ import hexlet.code.Validator;
 import hexlet.code.schemas.StringSchema;
 //import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public final class StringValidatorTest {
 //    @BeforeEach
@@ -25,11 +27,11 @@ public final class StringValidatorTest {
         var v = new Validator();
         var schema = v.string();
 
-        assertEquals(true, schema.isValid(null));
-        assertEquals(true, schema.isValid(""));
+        assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(""));
 
-        assertEquals(false, schema.required().isValid(null));
-        assertEquals(false, schema.isValid(""));
+        assertFalse(schema.required().isValid(null));
+        assertFalse(schema.isValid(""));
     }
     // TODO тест contains(), в т.ч. null
     @Test
@@ -37,14 +39,16 @@ public final class StringValidatorTest {
         var v = new Validator();
         var schema = v.string();
 
-        assertEquals(true, schema.isValid(""));
-        assertEquals(true, schema.isValid("this str is valid"));
-        assertEquals(true, schema.contains("this").isValid("this str is valid"));
-//        assertEquals(false, schema.isValid("This str is not valid"));
-        assertEquals(true, schema.contains("").isValid("This str is valid"));
-        assertEquals(false, schema.contains("   ").isValid("this str is not valid"));
-//        assertEquals(false, schema.contains("this").isValid(null));
+        assertTrue(schema.isValid(""));
+        assertTrue(schema.isValid("this str is valid"));
+        assertTrue(schema.contains("this").isValid("this str is valid"));
+//        assertFalse(schema.isValid("This str is not valid"));
+        assertTrue(schema.contains("").isValid("This str is valid"));
+        assertFalse(schema.contains(null).isValid("This str is not valid"));
+        assertFalse(schema.contains("   ").isValid("this str is not valid"));
+//        assertFalse(schema.contains("this").isValid(null));
     }
+    // TODO комплексный тест
 
         // TODO тест minLength(), в т.ч. отрицательный
     @Test
@@ -52,10 +56,10 @@ public final class StringValidatorTest {
         var v = new Validator();
         var schema = v.string();
 
-        assertEquals(true, schema.minLength(3).isValid("str"));
-        assertEquals(true, schema.isValid("string"));
-        assertEquals(false, schema.isValid("st"));
-        assertEquals(false, schema.isValid(null));
-//        assertEquals(false, schema.minLength(-5).isValid("asdf"));
+        assertTrue(schema.minLength(3).isValid("str"));
+        assertTrue(schema.isValid("string"));
+        assertFalse(schema.isValid("st"));
+        assertFalse(schema.isValid(null));
+//        assertFalse(schema.minLength(-5).isValid("asdf"));
     }
 }
