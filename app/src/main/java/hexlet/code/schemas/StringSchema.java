@@ -1,16 +1,18 @@
 package hexlet.code.schemas;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
+// FIXME вынести добавление элемента в массив в общую часть?
 public final class StringSchema extends BaseSchema<String> {
     private boolean required;
-    private boolean minLength;
-    private boolean substr;
+    private Integer minLengthPos;
+    private Integer substrPos;
 
     public StringSchema() {
         required = false;
-        minLength = false;
-        substr = false;
+        minLengthPos = null;
+        substrPos = null;
         predicates = new ArrayList<>();
     }
 
@@ -21,35 +23,25 @@ public final class StringSchema extends BaseSchema<String> {
         }
         return this;
     }
+    // FIXME что-то сделать с -length
+    // UPD да, наверное, и не надо ничего делать: минимальная длина < 0 -> всегда true
     public StringSchema minLength(int length) {
-// FIXME что-то сделать с -length
-// UPD да, наверное, и не надо ничего делать: минимальная длина < 0 -> всегда true
-        if (!this.minLength) {
+        if (this.minLengthPos == null) {
+            this.minLengthPos = predicates.size(); // получаем размер массива = индекс последнего элемента после добавления
             predicates.add((str) -> ((str != null) && (str.length() >= length)));
-            this.minLength = true;
+        } else {
+            predicates.set(this.minLengthPos, (str) -> ((str != null) && (str.length() >= length)));
         }
         return this;
     }
     public StringSchema contains(String substring) {
-//        this.substr = substring;
-        predicates.add((str) -> ((str != null) && (substring != null) && str.contains(substring)));
         // FIXME использовать NullPointerException, ктр может бросить contains()?
-        // FIXME накапливает проверки в scheme, надо хранить один экземпляр проверки и подменять substring
+        if (this.substrPos == null) {
+            this.substrPos = predicates.size();
+            predicates.add((str) -> ((str != null) && (substring != null) && str.contains(substring)));
+        } else {
+            predicates.set(this.substrPos, (str) -> ((str != null) && (substring != null) && str.contains(substring)));
+        }
         return this;
     }
-
-////    @Override
-//    public boolean isValid(String obj) {
-//        String str = (String) obj;
-//        if ((str == null) || str.isEmpty()) {
-//            return (!required) && ((minLength <= 0) || (substr == null));
-//        }
-//        if ((minLength > 0) && (str.length() < minLength)) { // флаг minLength?
-//            return false;
-//        }
-//        if ((substr != null) && (!str.contains(substr))) {
-//            return false;
-//        }
-//        return true;
-//    }
 }
