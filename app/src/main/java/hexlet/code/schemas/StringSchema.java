@@ -4,25 +4,30 @@ import java.util.ArrayList;
 
 public final class StringSchema extends BaseSchema<String> {
     private boolean required;
-    private int minLength;
-    private String substr;
+    private boolean minLength;
+    private boolean substr;
 
     public StringSchema() {
         required = false;
-        minLength = 0;
-        substr = "";
+        minLength = false;
+        substr = false;
         predicates = new ArrayList<>();
     }
 
     public StringSchema required() {
-//        this.required = true;
-        predicates.add((str) -> ((str != null) && !str.isEmpty()));
+        if (!this.required) {
+            predicates.add((str) -> ((str != null) && !str.isEmpty()));
+            this.required = true;
+        }
         return this;
     }
     public StringSchema minLength(int length) {
-//        this.minLength = length; // FIXME что-то сделать с -length
+// FIXME что-то сделать с -length
 // UPD да, наверное, и не надо ничего делать: минимальная длина < 0 -> всегда true
-        predicates.add((str) -> ((str != null) && (str.length() >= length)));
+        if (!this.minLength) {
+            predicates.add((str) -> ((str != null) && (str.length() >= length)));
+            this.minLength = true;
+        }
         return this;
     }
     public StringSchema contains(String substring) {
