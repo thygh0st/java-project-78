@@ -1,37 +1,31 @@
 package hexlet.code.schemas;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 public final class NumberSchema extends BaseSchema<Integer> {
-    private boolean required;
-    private boolean positive;
-    private boolean isRange;
-    private int minValue;
-    private int maxValue;
+    private Integer requiredPos;
+    private Integer positivePos;
+    private Integer rangePos;
 
     public NumberSchema() {
-        required = false;
-        positive = false;
-        isRange = false;
-        minValue = 0;
-        maxValue = 0;
+        requiredPos = null;
+        positivePos = null;
+        rangePos = null;
+        predicates = new ArrayList<>();
     }
 
     public NumberSchema required() {
-        this.required = true;
+//        this.requiredPos = addFilter(Objects::nonNull, this.requiredPos); // окак
+        this.requiredPos = addFilter(num -> num != null, this.requiredPos);
         return this;
     }
     public NumberSchema positive() {
-        this.positive = true;
+        this.positivePos = addFilter(num -> ((num == null) || (num > 0)), this.positivePos);
         return this;
     }
-    public NumberSchema range(int min, int max) {
-        this.isRange = true;
-        this.minValue = min;
-        this.maxValue = max;
-
+    public NumberSchema range(int min, int max) { // возможно, тут тоже null валидный...
+        this.rangePos = addFilter(num -> ((num != null) && (num >= min) && (num <= max)), this.rangePos);
         return this;
     }
-
-//    public boolean isValid(Integer obj) {
-//
-//    }
 }
