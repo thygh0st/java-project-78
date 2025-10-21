@@ -1,6 +1,3 @@
-//import java.nio.file.Files;
-//import java.nio.file.Paths;
-
 import hexlet.code.Validator;
 import hexlet.code.schemas.StringSchema;
 //import org.junit.jupiter.api.BeforeEach;
@@ -11,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public final class StringValidatorTest {
-//    @BeforeEach
-//    public void setupValidator() {
-//        var v = new Validator();
-//    }
     @Test
     public void checkClass() {
         var v = new Validator();
@@ -50,7 +43,7 @@ public final class StringValidatorTest {
     }
     // TODO комплексный тест
 
-        // TODO тест minLength(), в т.ч. отрицательный
+    // TODO тест minLength(), в т.ч. отрицательный
     @Test
     public void testMinLength() {
         var v = new Validator();
@@ -60,6 +53,6 @@ public final class StringValidatorTest {
         assertTrue(schema.isValid("string"));
         assertFalse(schema.isValid("st"));
         assertFalse(schema.isValid(null));
-//        assertFalse(schema.minLength(-5).isValid("asdf"));
+        assertTrue(schema.minLength(-5).isValid("asdf"));
     }
 }
