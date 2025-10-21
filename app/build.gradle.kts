@@ -1,9 +1,9 @@
 plugins {
     application
     checkstyle
-    id("org.sonarqube") version "6.2.0.5505"
-    id("se.patrikerdes.use-latest-versions") version "0.2.18"
-    id("com.github.ben-manes.versions") version "0.52.0"
+    id("org.sonarqube") version "7.0.0.6105"
+    id("se.patrikerdes.use-latest-versions") version "0.2.19"
+    id("com.github.ben-manes.versions") version "0.53.0"
     jacoco
 }
 
@@ -30,7 +30,7 @@ repositories {
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testImplementation(platform("org.junit:junit-bom:6.0.0-M2"))
+    testImplementation(platform("org.junit:junit-bom:6.0.0"))
 }
 
 tasks.test {
