@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public final class NumberSchema extends BaseSchema<Integer> {
     private Integer requiredPos;
