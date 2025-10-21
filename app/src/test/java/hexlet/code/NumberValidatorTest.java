@@ -1,4 +1,5 @@
-import hexlet.code.Validator;
+package hexlet.code;
+
 import hexlet.code.schemas.NumberSchema;
 //import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,12 @@ public class NumberValidatorTest {
         var schema = v.number();
 
         assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(2));
 
         schema.required();
 
         assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(10));
     }
 
     @Test
@@ -55,7 +58,7 @@ public class NumberValidatorTest {
         assertFalse(schema.isValid(10));
         assertTrue(schema.isValid(3));
         assertTrue(schema.isValid(-5));
-        assertFalse(schema.isValid(null));
+        assertTrue(schema.isValid(null));
     }
 
     @Test
@@ -72,7 +75,7 @@ public class NumberValidatorTest {
         assertFalse(schema.positive().isValid(-5));
         assertFalse(schema.isValid(null)); // накопили required
         assertTrue(schema.isValid(10));
-//        assertTrue(schema.range(-10, 3).isValid(-5)); // да, есть positive, но ведь указан range
+        assertFalse(schema.range(-10, 3).isValid(-5)); // накоплен positive
         assertTrue(schema.isValid(2));
         assertFalse(schema.range(0, 1).isValid(2));
     }

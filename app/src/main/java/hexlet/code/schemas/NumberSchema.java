@@ -1,6 +1,6 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
+import java.util.ArrayList; // FIXME вынести в базовый класс?
 
 public final class NumberSchema extends BaseSchema<Integer> {
     private Integer requiredPos;
@@ -23,8 +23,8 @@ public final class NumberSchema extends BaseSchema<Integer> {
         this.positivePos = addFilter(num -> ((num == null) || (num > 0)), this.positivePos);
         return this;
     }
-    public NumberSchema range(int min, int max) { // возможно, тут тоже null валидный...
-        this.rangePos = addFilter(num -> ((num != null) && (num >= min) && (num <= max)), this.rangePos);
+    public NumberSchema range(int min, int max) { // возможно, тут тоже null валидный... upd из обсуждений - да
+        this.rangePos = addFilter(num -> ((num == null) || (num >= min) && (num <= max)), this.rangePos);
         return this;
     }
 }
