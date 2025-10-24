@@ -7,6 +7,11 @@ public abstract class BaseSchema<T> {
 //    private HashMap<Predicate<T>, boolean> predicates;
     protected ArrayList<Predicate<T>> predicates;
 
+    /**
+     * Please don't override this method thank you very much
+     * @param obj
+     * @return bool
+     */
     public boolean isValid(T obj) {
         boolean result = true;
         if (!predicates.isEmpty()) {
