@@ -11,7 +11,7 @@ public abstract class BaseSchema<T> {
         boolean result = true;
         if (!predicates.isEmpty()) {
             for (var cond : predicates) {
-                result &= cond.test(obj);
+                result = result && cond.test(obj);
             }
         }
         return result;
