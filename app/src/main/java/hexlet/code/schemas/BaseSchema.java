@@ -17,7 +17,7 @@ public abstract class BaseSchema<T> {
         return result;
     }
 
-    public Integer addFilter(Predicate<T> filter, Integer pos) {
+    public final Integer addFilter(Predicate<T> filter, Integer pos) {
         if (pos == null) {
             predicates.add(filter);
             return predicates.size() - 1;

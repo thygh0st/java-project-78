@@ -30,6 +30,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         shaped = true;
         extFilterMap = new HashMap<>(schemas);
     }
+    @Override
     public boolean isValid(Map<?, ?> obj) {
         if (!shaped) {
             return super.isValid(obj);
