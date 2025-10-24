@@ -8,7 +8,8 @@ public abstract class BaseSchema<T> {
     protected ArrayList<Predicate<T>> predicates;
 
     /**
-     * Please don't override this method thank you very much
+     * Please don't override this method thank you very much.
+     * (i don't want to serialize data for this implementation)
      * @param obj
      * @return bool
      */
