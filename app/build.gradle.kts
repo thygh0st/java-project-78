@@ -1,4 +1,5 @@
 plugins {
+    java
     checkstyle
     id("org.sonarqube") version "7.0.0.6105"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
