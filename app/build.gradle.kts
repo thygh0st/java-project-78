@@ -1,5 +1,4 @@
 plugins {
-    application
     checkstyle
     id("org.sonarqube") version "7.0.0.6105"
     id("se.patrikerdes.use-latest-versions") version "0.2.19"
@@ -14,10 +13,6 @@ sonar {
         property("sonar.host.url", "https://sonarcloud.io")
         property ("sonar.coverage.jacoco.xmlReportPaths", "/reports/jacoco/test/jacocoTestReport.xml")
     }
-}
-
-application {
-    mainClass = "hexlet.code.App"
 }
 
 group = "hexlet.code"
