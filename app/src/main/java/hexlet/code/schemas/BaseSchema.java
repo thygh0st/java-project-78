@@ -1,11 +1,11 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
 //    private HashMap<Predicate<T>, boolean> predicates;
-    protected ArrayList<Predicate<T>> predicates;
+    protected List<Predicate<T>> predicates;
 
     /**
      * Please don't override this method thank you very much.
