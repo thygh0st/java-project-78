@@ -58,7 +58,7 @@ public class MapValidatorTest {
         var v = new Validator();
         var schema = v.map();
 
-        Map<String, BaseSchema<String>> schmString = new HashMap<>();
+        Map schmString = new HashMap<String, BaseSchema<String>>();
 
         schmString.put("firstName", v.string().required());
         schmString.put("lastName", v.string().required().minLength(2));

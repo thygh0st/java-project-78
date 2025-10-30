@@ -1,35 +1,22 @@
 package hexlet.code.schemas;
 
-import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
-//    private HashMap<Predicate<T>, boolean> predicates;
-    protected List<Predicate<T>> predicates;
+    protected Map<String, Predicate<T>> predicates;
 
-    /**
-     * Please don't override this method thank you very much.
-     * (i don't want to serialize data for this implementation)
-     * @param obj
-     * @return bool
-     */
-    public boolean isValid(T obj) {
+    public final boolean isValid(Object obj) {
         boolean result = true;
         if (!predicates.isEmpty()) {
-            for (var cond : predicates) {
-                result = result && cond.test(obj);
+            for (var cond : predicates.values()) {
+                result = result && cond.test((T) obj);
             }
         }
         return result;
     }
 
-    public final Integer addFilter(Predicate<T> filter, Integer pos) {
-        if (pos == null) {
-            predicates.add(filter);
-            return predicates.size() - 1;
-        } else {
-            predicates.set(pos, filter);
-            return pos;
-        }
+    public final void addFilter(String key, Predicate<T> filter) {
+        predicates.put(key.toLowerCase(), filter);
     }
 }

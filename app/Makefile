@@ -1,6 +1,3 @@
-# build-dist:
-# 	./gradlew clean
-# 	./gradlew installDist
 lint:
 	./gradlew checkstyleMain
 	./gradlew checkstyleTest
