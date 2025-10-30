@@ -16,7 +16,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         addFilter("sizeof", map -> ((map == null) || (map.size() == size)));
         return this;
     }
-    public MapSchema shape(Map<?, BaseSchema<?>> schemas) {
+    public MapSchema shape(Map<?, BaseSchema<String>> schemas) {
         addFilter("shape",
             map -> {
                 return map.entrySet().stream().allMatch(e -> {
