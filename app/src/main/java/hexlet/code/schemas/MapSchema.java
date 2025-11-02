@@ -20,7 +20,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         addFilter("shape",
             map -> {
                 return map.entrySet().stream().allMatch(e -> {
-                    return schemas.get(e.getKey()).isValid((T)e.getValue());
+                    return schemas.get(e.getKey()).isValid((T) e.getValue());
                 });
             }
         );
