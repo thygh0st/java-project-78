@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 public abstract class BaseSchema<T> {
     protected Map<String, Predicate<T>> predicates;
 
-    public final boolean isValid(Object obj) {
+    public final boolean isValid(T obj) {
         boolean result = true;
         if (!predicates.isEmpty()) {
             for (var cond : predicates.values()) {
-                result = result && cond.test((T) obj);
+                result = result && cond.test(obj);
             }
         }
         return result;
